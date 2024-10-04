@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bgWhite: #f3f4ee;
+  --gray: #9d9d9d;
+  --textGray: #5c5c5c;
+}
+
+body.lock {
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wrapper > main {
+  flex: 1 1 auto;
+}
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-[1280px] px-4;
+  }
+  .basic-transition {
+    @apply transition-all duration-200 ease-in;
+  }
+}
