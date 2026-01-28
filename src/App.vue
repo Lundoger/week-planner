@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import WeekPlanner from './components/WeekPlanner.vue'
-import type { IDaysWithTime, ITime } from './types/types'
+import type { DaysRecord, TimeInterval } from '@/types/week'
+import { loadWeekPlannerData, saveWeekPlannerData } from '@/utils/weekPlannerStorage'
 
-const data = ref<IDaysWithTime<ITime[]>>({
+const defaultData: DaysRecord<TimeInterval[]> = {
   mo: [
     {
       bt: 240,
@@ -35,10 +36,13 @@ const data = ref<IDaysWithTime<ITime[]>>({
     }
   ],
   su: []
-})
+}
 
-const setNewData = (newData: IDaysWithTime<ITime[]>) => {
+const data = ref<DaysRecord<TimeInterval[]>>(loadWeekPlannerData() ?? defaultData)
+
+const setNewData = (newData: DaysRecord<TimeInterval[]>) => {
   data.value = newData
+  saveWeekPlannerData(newData)
 }
 </script>
 
